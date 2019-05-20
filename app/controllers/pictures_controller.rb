@@ -19,6 +19,14 @@ class PicturesController < ApplicationController
     render("pic_templates/details.html.erb")
   end
 
+  def byebye
+    pic = Photo.where({ :id => params.fetch("id") }).at(0)
+
+    pic.destroy
+
+    redirect_to("/popular")
+  end
+
   def blank_form
     render("pic_templates/new_record_form.html.erb")
   end

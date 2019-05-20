@@ -25,6 +25,13 @@
   <dd>
     <%= @pic.fans.pluck(:username).to_sentence %>
   </dd>
+
+  <dt>Danger Zone</dt>
+  <dd>
+    <a href="/delete_photo/<%= @pic.id %>">
+      Delete this photo
+    </a>
+  </dd>
 </dl>
 
 <table>
