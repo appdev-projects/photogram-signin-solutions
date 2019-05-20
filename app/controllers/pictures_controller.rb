@@ -22,4 +22,15 @@ class PicturesController < ApplicationController
   def blank_form
     render("pic_templates/new_record_form.html.erb")
   end
+
+  def save_new_row
+    picture = Photo.new
+    picture.image = params.fetch("pic_image")
+    picture.caption = params.fetch("pic_caption")
+    picture.owner_id = params.fetch("poster_id")
+
+    picture.save
+
+    redirect_to("/recent")
+  end
 end
