@@ -18,4 +18,8 @@ class PicturesController < ApplicationController
 
     render("pic_templates/details.html.erb")
   end
+
+  def blank_form
+    render("pic_templates/new_record_form.html.erb")
+  end
 end
