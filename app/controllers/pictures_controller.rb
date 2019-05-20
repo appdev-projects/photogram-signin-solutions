@@ -20,7 +20,7 @@ class PicturesController < ApplicationController
   end
 
   def byebye
-    pic = Photo.where({ :id => params.fetch("id") }).at(0)
+    pic = Photo.where({ :id => params.fetch("toast_id") }).at(0)
 
     pic.destroy
 
@@ -40,5 +40,21 @@ class PicturesController < ApplicationController
     picture.save
 
     redirect_to("/recent")
+  end
+
+  def filled_in_form
+    @old_photo = Photo.where({ :id => params.fetch("fill_in_id") }).at(0)
+
+    render("pic_templates/existing_record_form.html.erb")
+  end
+
+  def save_old_row
+    picture = Photo.where({ :id => params.fetch("modify_id") }).at(0)
+    picture.image = params.fetch("pic_image")
+    picture.caption = params.fetch("pic_caption")
+
+    picture.save
+
+    redirect_to("/photos/#{picture.id}")
   end
 end

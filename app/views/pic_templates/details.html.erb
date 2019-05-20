@@ -28,9 +28,19 @@
 
   <dt>Danger Zone</dt>
   <dd>
-    <a href="/delete_photo/<%= @pic.id %>">
-      Delete this photo
-    </a>
+    <nav>
+      <div>
+        <a href="/existing_photo_form/<%= @pic.id %>">
+          Edit this photo
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_photo/<%= @pic.id %>">
+          Delete this photo
+        </a>
+      </div>
+    </nav>
   </dd>
 </dl>
 
