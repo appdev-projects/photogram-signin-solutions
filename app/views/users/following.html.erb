@@ -3,8 +3,8 @@
 <h2>Following (<%= @user.following.count %>)</h2>
 
 <ul>
-  <% @user.following.order({ :username => :asc }).each do |user| %>
-    <li><%= user.username %></li>
+  <% @user.accepted_sent_follow_requests.order({ :updated_at => :asc }).each do |follow_request| %>
+    <li><%= follow_request.recipient.username %></li>
   <% end %>
 </ul>
 
@@ -26,6 +26,12 @@
     <% User.where.not({ :id => @user.id }).where.not({ :id => @user.sent_follow_requests.pluck(:recipient_id) }).order({ :username => :asc }).each do |a_user| %>
       <option value="<%= a_user.id %>">
         <%= a_user.username %>
+
+        <% if a_user.private == false %>
+          (Public)
+        <% else %>
+          (Private)
+        <% end %>
       </option>
     <% end %>
   </select>

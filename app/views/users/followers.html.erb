@@ -3,7 +3,7 @@
 <h2>Followers (<%= @user.followers.count %>)</h2>
 
 <table>
-  <% @user.accepted_received_follow_requests.order({ :created_at => :asc }).each do |follow_request| %>
+  <% @user.accepted_received_follow_requests.order({ :updated_at => :asc }).each do |follow_request| %>
     <tr>
       <td>
         <%= follow_request.sender.username %>
@@ -51,7 +51,7 @@
 <h2>Rejected received requests (<%= @user.received_follow_requests.where({ :status => "rejected" }).count %>)</h2>
 
 <table>
-  <% @user.received_follow_requests.where({ :status => "rejected" }).each do |follow_request| %>
+  <% @user.received_follow_requests.where({ :status => "rejected" }).order({ :updated_at => :asc }).each do |follow_request| %>
     <tr>
       <td>
         <%= follow_request.sender.username %>
