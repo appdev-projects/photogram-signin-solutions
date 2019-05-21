@@ -55,6 +55,6 @@ class PicturesController < ApplicationController
 
     picture.save
 
-    redirect_to("/photos/#{picture.id}")
+    redirect_to("/photos/" + picture.id.to_s)
   end
 end
