@@ -29,6 +29,8 @@ Rails.application.routes.draw do
 
   match("/create_comment_record", { :controller => "comments", :action => "save_new_row", :via => "get" })
 
+  match("/create_like_record", { :controller => "likes", :action => "save_new_row", :via => "get" })
+
   # The routes below are for the ActiveAdmin dashboard located at /admin. You can ignore them.
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
