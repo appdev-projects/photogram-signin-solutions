@@ -34,4 +34,16 @@ class UsersController < ApplicationController
 
     render("users/discover.html.erb")
   end
+
+  def followers
+    @user = User.where({ :id => params.fetch("id") }).at(0)
+
+    render("users/followers.html.erb")
+  end
+
+  def following
+    @user = User.where({ :id => params.fetch("id") }).at(0)
+
+    render("users/following.html.erb")
+  end
 end
