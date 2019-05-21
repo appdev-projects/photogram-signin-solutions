@@ -3,7 +3,12 @@ class FollowRequestsController < ApplicationController
     follow_req = FollowRequest.new
     follow_req.sender_id = params.fetch("sender_id")
     follow_req.recipient_id = params.fetch("recipient_id")
-    follow_req.status = "pending"
+
+    if follow_req.recipient.private == false
+      follow_req.status = "accepted"
+    else
+      follow_req.status = "pending"
+    end
 
     follow_req.save
 

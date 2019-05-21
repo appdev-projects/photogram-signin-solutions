@@ -22,11 +22,9 @@
       </td>
 
       <td>
-        <% if !user.private %>
-          <a href="/users/<%= user.id %>">
-            Show details
-          </a>
-        <% end %>
+        <a href="/users/<%= user.id %>">
+          Show details
+        </a>
       </td>
     </tr>
   <% end %>
