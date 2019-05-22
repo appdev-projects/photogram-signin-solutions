@@ -31,8 +31,8 @@
     <form action="/create_like_record">
       <input type="hidden" value="<%= @pic.id %>" name="picture_id">
 
-      <label for="user_dropdown">Person</label>
-      <select id="user_dropdown" name="person_id" >
+      <label for="fan_dropdown">Person</label>
+      <select id="fan_dropdown" name="person_id" >
         <% User.all.order({ :username => :asc }).each do |a_user| %>
           <option value="<%= a_user.id %>">
             <%= a_user.username %>
@@ -93,8 +93,8 @@
 <form action="/create_comment_record">
   <input type="hidden" value="<%= @pic.id %>" name="picture_id">
 
-  <label for="user_dropdown">Commenter</label>
-  <select id="user_dropdown" name="commenter_id" >
+  <label for="author_dropdown">Commenter</label>
+  <select id="author_dropdown" name="commenter_id" >
     <% User.all.order({ :username => :asc }).each do |a_user| %>
       <option value="<%= a_user.id %>">
         <%= a_user.username %>
