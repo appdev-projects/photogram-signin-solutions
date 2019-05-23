@@ -7,6 +7,10 @@ class CommentsController < ApplicationController
 
     comment.save
 
+    photo = Photo.where({ :id => comment.photo_id }).at(0)
+    photo.comments_count = photo.comments_count + 1
+    photo.save
+
     redirect_to("/photos/" + comment.photo_id.to_s)
   end
 end
