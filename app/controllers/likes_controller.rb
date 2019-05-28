@@ -12,4 +12,12 @@ class LikesController < ApplicationController
 
     redirect_to("/photos/" + like.photo_id.to_s)
   end
+
+  def byeeee
+    like = Like.where({ :id => params.fetch("bye_id") }).at(0)
+
+    like.destroy
+
+    redirect_to("/photos/" + like.photo_id.to_s)
+  end
 end
