@@ -10,60 +10,64 @@
       </td>
 
       <td>
-        <form action="/update_follow_request_record/<%= follow_request.id %>">
-          <input type="hidden" name="new_status" value="rejected">
+        <% if @user == current_user %>
+          <form action="/update_follow_request_record/<%= follow_request.id %>">
+            <input type="hidden" name="new_status" value="rejected">
 
-          <button>Reject</button>
-        </form>
+            <button>Reject</button>
+          </form>
+        <% end %>
       </td>
     </tr>
   <% end %>
 </table>
 
-<h2>Pending received requests (<%= @user.received_follow_requests.where({ :status => "pending" }).count %>)</h2>
+<% if @user == current_user %>
+  <h2>Pending received requests (<%= @user.received_follow_requests.where({ :status => "pending" }).count %>)</h2>
 
-<table>
-  <% @user.received_follow_requests.where({ :status => "pending" }).each do |follow_request| %>
-    <tr>
-      <td>
-        <%= follow_request.sender.username %>
-      </td>
+  <table>
+    <% @user.received_follow_requests.where({ :status => "pending" }).each do |follow_request| %>
+      <tr>
+        <td>
+          <%= follow_request.sender.username %>
+        </td>
 
-      <td>
-        <form action="/update_follow_request_record/<%= follow_request.id %>">
-          <input type="hidden" name="new_status" value="accepted">
+        <td>
+          <form action="/update_follow_request_record/<%= follow_request.id %>">
+            <input type="hidden" name="new_status" value="accepted">
 
-          <button>Accept</button>
-        </form>
-      </td>
+            <button>Accept</button>
+          </form>
+        </td>
 
-      <td>
-        <form action="/update_follow_request_record/<%= follow_request.id %>">
-          <input type="hidden" name="new_status" value="rejected">
+        <td>
+          <form action="/update_follow_request_record/<%= follow_request.id %>">
+            <input type="hidden" name="new_status" value="rejected">
 
-          <button>Reject</button>
-        </form>
-      </td>
-    </tr>
-  <% end %>
-</table>
+            <button>Reject</button>
+          </form>
+        </td>
+      </tr>
+    <% end %>
+  </table>
 
-<h2>Rejected received requests (<%= @user.received_follow_requests.where({ :status => "rejected" }).count %>)</h2>
+  <h2>Rejected received requests (<%= @user.received_follow_requests.where({ :status => "rejected" }).count %>)</h2>
 
-<table>
-  <% @user.received_follow_requests.where({ :status => "rejected" }).order({ :updated_at => :asc }).each do |follow_request| %>
-    <tr>
-      <td>
-        <%= follow_request.sender.username %>
-      </td>
+  <table>
+    <% @user.received_follow_requests.where({ :status => "rejected" }).order({ :updated_at => :asc }).each do |follow_request| %>
+      <tr>
+        <td>
+          <%= follow_request.sender.username %>
+        </td>
 
-      <td>
-        <form action="/update_follow_request_record/<%= follow_request.id %>">
-          <input type="hidden" name="new_status" value="accepted">
+        <td>
+          <form action="/update_follow_request_record/<%= follow_request.id %>">
+            <input type="hidden" name="new_status" value="accepted">
 
-          <button>Accept</button>
-        </form>
-      </td>
-    </tr>
-  <% end %>
-</table>
+            <button>Accept</button>
+          </form>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
