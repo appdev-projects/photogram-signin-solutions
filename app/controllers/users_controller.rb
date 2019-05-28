@@ -8,6 +8,8 @@ class UsersController < ApplicationController
   def show
     @user = User.where({ :id => params.fetch("id") }).at(0)
 
+    @photos = @user.own_photos.order({ :created_at => :desc })
+
     render("users/show.html.erb")
   end
 
@@ -20,17 +22,23 @@ class UsersController < ApplicationController
   def liked_photos
     @user = User.where({ :id => params.fetch("id") }).at(0)
 
+    @photos = @user.liked_photos.order({ :created_at => :desc })
+
     render("users/liked.html.erb")
   end
 
   def feed
     @user = User.where({ :id => params.fetch("id") }).at(0)
 
+    @photos = @user.feed.order({ :created_at => :desc })
+
     render("users/feed.html.erb")
   end
 
   def discover
     @user = User.where({ :id => params.fetch("id") }).at(0)
+
+    @photos = @user.discover.order({ :created_at => :desc })
 
     render("users/discover.html.erb")
   end
