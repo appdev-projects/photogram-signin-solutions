@@ -1,5 +1,21 @@
 <h1><%= @user.username %></h1>
 
+<% follow_req = FollowRequest.where({ :sender_id => current_user.id, :recipient_id => @user.id }).at(0) %>
+
+<% if follow_req != nil %>
+  <a href="/delete_follow_request/<%= follow_req.id %>">
+    Unfollow
+  </a>
+<% else %>
+  <form action="/create_follow_request_record">
+    <input type="hidden" name="sender_id" value="<%= current_user.id %>">
+
+    <input type="hidden" name="recipient_id" value="<%= @user.id %>">
+
+    <button>Follow <%= @user.username %></button>
+  </form>
+<% end %>
+
 <dl>
   <dt>Followers</dt>
   <dd><%= @user.followers.count %></dd>

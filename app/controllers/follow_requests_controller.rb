@@ -12,7 +12,7 @@ class FollowRequestsController < ApplicationController
 
     follow_req.save
 
-    redirect_to("/users/" + follow_req.sender_id.to_s + "/following")
+    redirect_to("/users/" + follow_req.recipient_id.to_s)
   end
 
   def save_old_row
@@ -22,5 +22,13 @@ class FollowRequestsController < ApplicationController
     follow_req.save
 
     redirect_to("/users/" + follow_req.recipient_id.to_s + "/followers")
+  end
+
+  def byeeee
+    follow_request = FollowRequest.where({ :id => params.fetch("bye_id") }).at(0)
+
+    follow_request.destroy
+
+    redirect_to("/users/" + follow_request.recipient_id.to_s)
   end
 end
