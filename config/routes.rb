@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
-  match("/", { :controller => "pictures", :action => "recent", :via => "get" })
+
+  match("/", { :controller => "users", :action => "home", :via => "get" })
 
   match("/recent", { :controller => "pictures", :action => "recent", :via => "get" })
 

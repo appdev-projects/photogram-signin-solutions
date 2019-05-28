@@ -1,4 +1,12 @@
 class UsersController < ApplicationController
+  def home
+    @user = current_user
+
+    @photos = @user.feed.order({ :created_at => :desc })
+
+    render("users/feed.html.erb")
+  end
+
   def index
     @users = User.all.order({ :username => :asc })
 
