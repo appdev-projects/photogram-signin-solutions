@@ -42,22 +42,24 @@
     <% end %>
   </dd>
 
-  <dt>Danger Zone</dt>
-  <dd>
-    <nav>
-      <div>
-        <a href="/existing_photo_form/<%= @pic.id %>">
-          Edit this photo
-        </a>
-      </div>
+  <% if @pic.owner == current_user %>
+    <dt>Danger Zone</dt>
+    <dd>
+      <nav>
+        <div>
+          <a href="/existing_photo_form/<%= @pic.id %>">
+            Edit this photo
+          </a>
+        </div>
 
-      <div>
-        <a href="/delete_photo/<%= @pic.id %>">
-          Delete this photo
-        </a>
-      </div>
-    </nav>
-  </dd>
+        <div>
+          <a href="/delete_photo/<%= @pic.id %>">
+            Delete this photo
+          </a>
+        </div>
+      </nav>
+    </dd>
+  <% end %>
 </dl>
 
 <h2>Comments</h2>
